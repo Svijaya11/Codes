@@ -1,0 +1,64 @@
+# Get the name of the file and open it
+name = input('Enter file:')
+handle = open(name, 'r')
+# Count word frequency
+counts = dict()
+for line in handle:
+    words = line.split()
+    for word in words:
+        counts[word] = counts.get(word,0) + 1
+        
+# Find the most common word
+bigcount = None
+bigword = None
+for word,count in counts.items():
+    if bigcount is None or count > bigcount:
+        bigword = word
+        bigcount = count
+# All done
+print(bigword, bigcount)
+
+
+# No. of vowels in a string 
+string = "The quick brown fox jumps over the lazy dog"
+small_letters = string.lower()
+No_of_vowel = {}
+for vowel in "aeiou":
+  Number = small_letters.count(vowel)
+  No_of_vowel[vowel] = Number
+print(No_of_vowel)
+total = sum(No_of_vowel.values())
+print(total)
+
+
+# Finding biggest/ largest number 
+largest_so_far = -1
+print('Before', largest_so_far)
+for the_num in [9, 41, 12, 74, 15] :
+   if the_num > largest_so_far :
+      largest_so_far = the_num
+   print(largest_so_far, the_num)
+print('After', largest_so_far)
+
+
+# Counting in a loop, Summing in a loop, Finding average
+count = 0
+sum = 0
+print('Before', count, sum)
+for value in [9, 41, 12, 3] :
+    count = count + 1
+    sum = sum + value
+    print(count, sum, value)
+print('After', count, sum, sum / count)
+
+
+# Finding smallest in a loop
+smallest = None
+print('Before')
+for value in [9, 41, 3, 12] :
+    if smallest is None : 
+        smallest = value
+    elif value < smallest : 
+        smallest = value
+    print(smallest, value)
+print('After', smallest)
