@@ -13,7 +13,7 @@ def functn(x,mu,sigma):
 functn(1,2,3)
 
 
-# log(x)-1
+# Plot graph of log(x)-1
 import numpy as np
 import matplotlib.pyplot as plt
 x = np.linspace(0, 10, 10)
@@ -24,7 +24,7 @@ plt.ylabel("Y label")
 plt.xlabel("X label")
 
 
-# log(x)-1 and sqrt(x)
+# Plot graph of log(x)-1 and sqrt(x)
 import numpy as np
 import matplotlib.pyplot as plt
 from mpl_toolkits.axes_grid1.inset_locator import mark_inset, inset_axes
