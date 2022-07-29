@@ -1,0 +1,152 @@
+# Write a Python program to remove duplicates from a list.
+# Input: list1 = [10,20,30,20,10,50,60,40,80,50,40]
+# Expected output: [10, 20, 30, 50, 60, 40, 80]
+def Remove(list1):
+    list2 = []
+    for num in list1:
+        if num not in list2:
+            list2.append(num)
+    return list2
+list1 = [10,20,30,20,10,50,60,40,80,50,40]
+print(Remove(list1))
+
+
+# Define a function that take a list of words as argument and returns list with the characters reversed.
+# for example, ['abc','tuv'] -----> ['cba','vut'] or like ['abc','tuv'] -----> ['vut','cba',]
+given_list = ['abc','tuv']
+given_list.reverse()
+print(given_list)
+
+
+def intro_rightalign():
+  name = input("Enter your name: ")
+  roll = input("Roll number: ")
+  dept = input("Department: ")
+  print ("Name: ", f"{name:>80}")
+  print ("Roll number: ", f"{roll:>80}")
+  print ("Department: ", f"{dept:>80}")
+intro_rightalign()
+
+
+import math as m
+def functn(x):
+  fx = (m.sin(x))*((15/x**3)-(6/x))
+  ans = fx / x
+  return ans
+functn(m.pi/6)
+
+
+import math as m
+def functn(x,mu,sigma):
+  answer = (1/(sigma*m.sqrt(2*m.pi)))*m.exp((-1/2)*((x-mu)/sigma)**2)
+  return answer
+functn(1,2,3)
+
+
+# log(x)-1
+import numpy as np
+import matplotlib.pyplot as plt
+x = np.linspace(0, 10, 10)
+y = np.log(x) - 1
+plt.plot(x,y,"blue")
+plt.title("Title")
+plt.ylabel("Y label")
+plt.xlabel("X label")
+
+
+# log(x)-1 and sqrt(x)
+import numpy as np
+import matplotlib.pyplot as plt
+from mpl_toolkits.axes_grid1.inset_locator import mark_inset, inset_axes
+x = np.linspace(0, 10, 100)
+y1 = np.log(x**(-1))
+y2 = np.sqrt(x)
+plt.plot(x, y1, 'blue', label ='log(x)-1')
+plt.plot(x, y2, 'red', label ='sqrt(x)')
+plt.title("Title")
+plt.ylabel("Y label")
+plt.xlabel("X label")
+plt.legend()
+ax = plt.subplot(1, 1, 1)
+ax.plot(x, y2)
+axins = inset_axes(ax, 1.5, 1.5, loc=2, bbox_to_anchor=(1, 1))
+axins.plot(x, y2)
+x3, x4 = 2, 3
+y3, y4 = np.sqrt(x3), np.sqrt(x4)
+axins.set_xlim(x3, x4)
+axins.set_ylim(y3, y4)
+mark_inset(ax, axins, loc1=1, loc2=3, fc="none", ec="0.5")
+plt.show() 
+
+
+#Taylor series for sin (x+1) around x0= -2; x axis limits [-pi,pi]
+import sympy
+from sympy.functions import sin,cos
+# Variable and Function
+x = sympy.Symbol('x')
+f = sin(x+1) #defining function
+import numpy as np
+import math as m
+from cmath import pi
+import matplotlib.pyplot as plt
+def taylor(function,x0,n): # Taylor approximation of function at x0
+    i = 0
+    p = 0
+    while i <= n:
+        p = p + (function.diff(x,i).subs(x,x0))/(m.factorial(i))*(x-x0)**i
+        i += 1
+    return p
+# function=taylor(f,0,)
+def plot():
+    x_lims = [-pi,pi]
+    x1 = np.linspace(x_lims[0],x_lims[1],100)
+    y1 = []
+    # Approximating from 1, using gaps of 2
+    for a in range(1,4,2):
+        func = taylor(f,-2,a)
+        print('Taylor Expansion for n='+str(a+1),func)
+        for b in x1:
+            y1.append(func.subs(x,b))
+        plt.plot(x1,y1,label='term '+str(a+1))
+        y1 = []
+    # Plot the function to approximate (sine, in this case)
+    plt.plot(x1,np.sin(x1+1),label='sin(x+1)')
+    plt.xlim(x_lims)
+    plt.ylim([-pi,pi])
+    plt.xlabel('x')
+    plt.ylabel('y')
+    plt.legend()
+    plt.title('Taylor Approximation')
+    plt.show()
+plot()`
+
+
+import sympy as sp
+import matplotlib.pyplot as plt
+import numpy as np
+import scipy
+from scipy import integrate
+def f(x):
+    return 1/(1-x)
+def simpson(a, b,n):
+    # calculating step size
+    h = (b - a) / n
+    # Finding sum 
+    integration = f(a) + f(b) 
+    for i in range(1,n):
+        k = a + i*h 
+        if i%2 == 0:
+            integration = integration + 2 * f(k)
+        else:
+            integration = integration + 4 * f(k)   
+    # Finding final integration value
+    integration = integration * h/3   
+    return integration 
+# Inputs
+a = float(input("Enter the lower limit: "))
+b = float(input("Enter the upper limit: "))
+n = int(input("Enter number of sub intervals: "))
+fun = lambda x: 1/(1-x)
+result = simpson(a, b, n)
+print("Integration result by Simpson's 1/3 method is: %0.6f" % (result) )
+print("Integration result by Sympy is:", (scipy.integrate.quad(fun, a, b)))
