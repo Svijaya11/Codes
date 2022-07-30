@@ -1,0 +1,40 @@
+#Taylor series for sin (x+1) around x0= -2; x axis limits [-pi,pi]
+import sympy
+from sympy.functions import sin,cos
+# Variable and Function
+x = sympy.Symbol('x')
+f = sin(x+1) #defining function
+import numpy as np
+import math as m
+from cmath import pi
+import matplotlib.pyplot as plt
+def taylor(function,x0,n): # Taylor approximation of function at x0
+    i = 0
+    p = 0
+    while i <= n:
+        p = p + (function.diff(x,i).subs(x,x0))/(m.factorial(i))*(x-x0)**i
+        i += 1
+    return p
+# function=taylor(f,0,)
+def plot():
+    x_lims = [-pi,pi]
+    x1 = np.linspace(x_lims[0],x_lims[1],100)
+    y1 = []
+    # Approximating from 1, using gaps of 2
+    for a in range(1,4,2):
+        func = taylor(f,-2,a)
+        print('Taylor Expansion for n='+str(a+1),func)
+        for b in x1:
+            y1.append(func.subs(x,b))
+        plt.plot(x1,y1,label='term '+str(a+1))
+        y1 = []
+    # Plot the function to approximate (sine, in this case)
+    plt.plot(x1,np.sin(x1+1),label='sin(x+1)')
+    plt.xlim(x_lims)
+    plt.ylim([-pi,pi])
+    plt.xlabel('x')
+    plt.ylabel('y')
+    plt.legend()
+    plt.title('Taylor Approximation')
+    plt.show()
+plot()`
