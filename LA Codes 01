@@ -1,0 +1,39 @@
+import math
+print("Enter the first point A")
+x1, y1 = map(int, input().split())
+print("Enter the second point B")
+x2, y2 = map(int, input().split())
+dist = math.sqrt((x2-x1)**2 + (y2-y1)**2)
+print("The Euclidean Distance is " + str(dist))
+
+
+if x<0:
+  print ('number is not positive')
+if x>=0 and x%2==0:
+  print ('even')
+if x>=0 and x%2!=0:
+  print ('odd') 
+x=25
+
+
+lower, upper = 2, 25
+for num in range (lower, upper + 1):
+  flag = 0
+  if num > 1:
+    for i in range (2, num):
+      if (num % i == 0):
+        flag = 1
+        break
+    if flag == 0:
+      print (num)
+      
+      
+      def interval_intersect(a, b, c, d):
+    return (c <= b) or (a <= d)
+
+def test(a, b, c, d):
+    "Intervals [" + str(a) + ", " + str(b) + "] and [" + str(c) + ", " + str(d) + "]",
+    if interval_intersect(a, b, c, d):
+      print ("True")
+    else:
+      print ("False")
