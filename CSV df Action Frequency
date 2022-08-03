@@ -1,0 +1,77 @@
+# Read CSV File
+from google.colab import files
+import pandas as pd
+uploaded = files.upload()
+
+import io
+filedata = pd.read_csv(io.BytesIO(uploaded['Asg1.csv']))
+filedata
+
+# Cleaning data
+filedata2 = filedata.dropna()
+filedata2
+clean_filedata2 = filedata2[ dataframe.ID != 2]
+clean_filedata2
+clean_filedata = clean_filedata2.reset_index(drop = True)
+clean_filedata
+
+# Action frequency - Login
+arr = clean_filedata.ID.unique()
+arr.sort()
+print(arr)
+action_frequency = pd.DataFrame()
+action_frequency['ID'] = arr
+action_frequency
+
+from array import *
+login_filedata = clean_filedata.loc[clean_filedata['Event name'].str.contains('User has logged in')]
+login_list = array ('i',[])
+login_list = login_filedata.groupby(["ID"]).size()
+print (login_list)
+action_frequency['Total # of login'] = login_list.to_list()
+action_frequency
+
+# Action frequency - Assignment
+assignment_filedata = clean_filedata.loc[clean_filedata['Event name'].str.contains('A submission has been submitted')]
+assignment = array ('i',[])
+assignment = assignment_filedata.groupby(["ID"]).size()
+action_frequency['# of assignments done'] = assignment.to_list()
+action_frequency
+
+# Action frequency - Discussion
+discussion_filedata = clean_filedata.loc[clean_filedata['Event name'].str.contains('Discussion created')]
+discussion = array ('i',[])
+discussion = discussion_filedata.groupby("ID").size()
+print(discussion)
+from numpy import *
+action_frequency['# of discussion created'] = where((action_frequency['ID']== 3.0) | (action_frequency['ID']== 6.0), 0 , 1)
+action_frequency
+
+# Action frequency - Quizzes
+quizzes_filedata = clean_filedata.loc[clean_filedata['Event name'].str.contains('Quiz attempt submitted')]
+quizzes = array ('i',[])
+quizzes = quizzes_filedata.groupby(["ID"]).size()
+action_frequency['# of quizzes takem'] = quizzes.to_list()
+action_frequency
+
+# Bar Graph
+import matplotlib.pyplot as plt
+labels = ['ID Number 3','ID Number 4','ID Number 6']
+bars = plt.bar(labels, login_list )
+
+# Pie Chart
+submit = assignment_filedata.loc[assignment_filedata['Event context'].str.contains('Stop motion video')].count()[0]
+total = len(arr)
+not_submit = total - submit 
+labels = ["Submitted","Not Submitted"]
+colors = ["Green" , "Orange"]
+plt.pie([submit,not_submit],labels=labels,colors= colors)
+plt.title ("Assignment : Stop motion Video")
+plt.show()
+
+# Scatter Plot
+Scatter_filedata = clean_filedata.loc[clean_filedata['Event name'].str.contains('viewed')]
+Scatter = array ('i',[])
+Scatter = Scatter_filedata.groupby(["ID"]).size()
+plt.scatter(assignment, Scatter)
+plt.show()
