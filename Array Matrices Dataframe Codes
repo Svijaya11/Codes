@@ -45,3 +45,69 @@ uploaded = files.upload()
 data = pd.read_csv("asg1_part2.csv")
 action = data["Event context"].value_counts()
 print(action)
+import numpy as np
+no_of_actions = np.array(action)
+print(no_of_actions)
+no_of_actions #store in arr
+
+
+# Drop description column
+import pandas as pd
+from google.colab import files
+uploaded = files.upload()
+df = pd.read_csv("asg1_part2.csv")
+df.drop(df.iloc[:, 5:5], axis = 1)
+print (df)
+
+
+# Print first 3 or last 7 rows
+print (df.iloc [:3])
+print (df.iloc [-7:])
+
+
+# Records of male students
+data = pd.read_csv("asg1_part2.csv")
+df ['GENDER'] = ['MALE', 'FEMALE', 'MALE', 'FEMALE', 'MALE', 'MALE', 'MALE', 'MALE', 'MALE']
+print (df)
+import pandas as pd
+filter_criteria = (df["GENDER"] == "Male")
+Index (['Time', 'User full name', 'Event context', 'Component', 'Event name', 'Description', 'Origin', 'IP address', 'GENDER'], dtype='object')
+new_data= df[filter_criteria] #records of male students in new_data
+print (new_data)
+
+
+# Pie Chart
+import matplotlib.pyplot as plt
+plt.figure(figsize=(3,3))
+labels=["WEB", "PHONE"]
+values= [3,6]
+plt.pie(values, labels= labels)
+plt.show()
+
+
+# Bar Graph
+import matplotlib.pyplot as plt
+plt.figure(figsize=(3,3))
+labels=["D", "M", "P"]
+values= [5,2,2]
+plt.bar(labels,values)
+plt.show()
+
+
+# Box Plot
+import matplotlib.pyplot as plt
+plt.figure(figsize=(3,3))
+labels=[1,101]
+values= [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97]
+plt.boxplot(values)
+plt.show()
+
+
+# Scatter Plot
+import matplotlib.pyplot as plt
+plt.figure(figsize=(3,3))
+points = [(1,2),(2,3),(1,4),(5,6),(7,5)]
+x_values= [1,2,1,5,7]
+y_values= [2,3,4,6,5]
+plt.scatter(x_values,y_values,color="blue", s=100)
+plt.show()
