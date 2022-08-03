@@ -1,0 +1,47 @@
+# Define 1D Array
+import numpy as np
+array_A = np.arange(start=1, stop=101, step=1)
+print (array_A)
+
+
+# Reshape into 2D Array
+import numpy as np
+array_A = np.arange(start=1, stop=101, step=1)
+array_R = np.reshape(A, (-1, 10))
+print (array_R)
+
+
+# Binary Matrix with prime numbers as 1
+import sympy as sp
+array_A = np.arange(start=1, stop=101, step=1)
+array_B = np.array ([sp.isprime (i) for i in array_A]).astype (int)
+print (array_B) 
+import sympy as sp
+array_A = np.arange(start=1, stop=101, step=1)
+array_B = np.array ([sp.isprime (i) for i in array_A]).astype (int)
+R2 = np.reshape(array_B, (-1, 10))
+print (R2) 
+
+
+# Concatenate 2 matrices
+import numpy as np
+np. concatenate((array_R, R2))
+
+
+# Dataframe of CSV file records
+import pandas as pd
+from google.colab import files
+uploaded = files.upload()
+df = pd.read_csv("asg1_part2.csv")
+print(df.head())
+df ['GENDER'] = ['MALE', 'FEMALE', 'MALE', 'FEMALE', 'MALE', 'MALE', 'MALE', 'MALE', 'MALE']
+print (df)
+
+
+# Number of actions in an array
+import pandas as pd
+from google.colab import files
+uploaded = files.upload()
+data = pd.read_csv("asg1_part2.csv")
+action = data["Event context"].value_counts()
+print(action)
