@@ -2,7 +2,6 @@
 from google.colab import files
 import pandas as pd
 uploaded = files.upload()
-
 import io
 filedata = pd.read_csv(io.BytesIO(uploaded['Asg1.csv']))
 filedata
@@ -15,6 +14,7 @@ clean_filedata2
 clean_filedata = clean_filedata2.reset_index(drop = True)
 clean_filedata
 
+
 # Action frequency - Login
 arr = clean_filedata.ID.unique()
 arr.sort()
@@ -22,7 +22,6 @@ print(arr)
 action_frequency = pd.DataFrame()
 action_frequency['ID'] = arr
 action_frequency
-
 from array import *
 login_filedata = clean_filedata.loc[clean_filedata['Event name'].str.contains('User has logged in')]
 login_list = array ('i',[])
@@ -53,6 +52,7 @@ quizzes = array ('i',[])
 quizzes = quizzes_filedata.groupby(["ID"]).size()
 action_frequency['# of quizzes takem'] = quizzes.to_list()
 action_frequency
+
 
 # Bar Graph
 import matplotlib.pyplot as plt
