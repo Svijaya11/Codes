@@ -1,0 +1,23 @@
+import numpy as np
+import math
+import matplotlib.pyplot as plt
+
+ran = createList(-2, 2)
+sin2x=[2*math.sin(x)*math.cos(x) for x in ran]
+cos2x = [math.cos(2*x) for x in ran]
+
+#Normal Plot
+plt.plot(ran, sin2x, color = 'black', label='2sinxcosx')
+plt.plot(ran, cos2x, color = 'red', label='cos2x')
+plt.ylabel("Functional Value")
+plt.xlabel("Range")
+plt.title("Graph Plot")
+plt.legend(loc="upper right")
+plt.show()
+
+#Zoomed Version
+ax2 = plt.subplot(221)
+ax2.margins(-0.25, 0.25) 
+ax2.plot(ran, sin2x, color = 'black', label='2sinxcosx')
+ax2.plot(ran, cos2x, color = 'red', label='cos2x')
+ax2.set_title('Zoomed in')
