@@ -14,7 +14,6 @@ clean_filedata2
 clean_filedata = clean_filedata2.reset_index(drop = True)
 clean_filedata
 
-
 # Action frequency - Login
 arr = clean_filedata.ID.unique()
 arr.sort()
@@ -52,7 +51,6 @@ quizzes = array ('i',[])
 quizzes = quizzes_filedata.groupby(["ID"]).size()
 action_frequency['# of quizzes takem'] = quizzes.to_list()
 action_frequency
-
 
 # Bar Graph
 import matplotlib.pyplot as plt
