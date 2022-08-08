@@ -151,3 +151,21 @@ ax.legend()
 plt.xlabel('time')
 plt.ylabel('population')
 
+
+import matplotlib.pyplot as plt
+def harmonic(t,x):
+  return np.array([x[1], (F-(c*x[1])-(k*x[0]))/m])
+from os import read
+# ploting the function
+m=1
+c=1/4
+k=1
+F=0
+p0 = [1,0]
+tstep = 0.1
+xrk4, trk4 = RungeKutta4 (harmonic, tspan, p0, tstep)
+fig, axes = plt.subplots()
+axes.plot(trk4,xrk4[:,0] ,'r', lw=0.1, marker='+', ),
+axes.set_title('damped linear harmonic oscillator')
+axes.set_xlabel('t')
+axes.set_ylabel('x')
