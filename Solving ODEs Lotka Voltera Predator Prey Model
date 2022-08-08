@@ -122,3 +122,32 @@ ax.legend()
 plt.xlabel('time')
 plt.ylabel('population')
 
+
+def RungeKutta4(f,tspan,y0,dt): # defining RungeKutta RK2 function
+    n = int(np.diff(tspan)/dt)    
+    t = np.linspace(tspan[0],tspan[1],n+1)
+    y = np.zeros([n+1,len(y0)])   # defining array
+    y[0,:] = y0                   
+    for i in range(0,n):
+      k1 = f(t[i],y[i,:])      
+      k2 = f(t[i]+(dt/2),y[i,:] + (k1*dt/2)) 
+      k3 = f(t[i]+(dt/2),y[i,:] + (k2*dt/2)) 
+      k4 = f(t[i]+dt,y[i,:] + (k3*dt))
+      kf = (k1 + 2*k2 + 2*k3 + k4)/6           
+      y[i+1,:] = y[i,:] + (kf*dt)
+    return y, t
+    y2, t2 = RungeKutta4(lotkavolterra, tspan, p0, 0.1)
+    print(y,t)
+    
+    
+y2, t2 = RungeKutta4(lotkavolterra, tspan, p0, 0.1)
+fig, ax = plt.subplots(figsize=(16,8))
+# plotting graphs for Fox & Rabbit - RK2 vs RK4
+ax.plot(t, y[:,1], "--g", label="Foxes by rungekutta2")
+ax.plot(t2, y2[:,1], "b", label="Foxes by rungekutta4")
+ax.plot(t, y[:,0],"--o", label="Rabbits by rungekutta2")
+ax.plot(t2, y2[:,0], "r", label="Rabbits by rungekutta4")
+ax.legend()
+plt.xlabel('time')
+plt.ylabel('population')
+
