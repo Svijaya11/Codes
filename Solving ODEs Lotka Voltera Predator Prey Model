@@ -1,0 +1,84 @@
+import matplotlib.pyplot as plt
+import numpy as np
+from scipy.integrate import solve_ivp   # ivp stands for initial value problem
+def simplefun(t, y):  # right hand side of the dy/dt = f(t,y) equation
+    a = -1
+    dydt = a*y 
+    return [dydt]
+y0 = [1]      # initial condition (t=0) for dependent variable
+t0 = 0
+tfinal = 3
+ts = np.linspace(t0, tfinal, (tfinal-t0)*10) # sampled vector of time (independent variable)
+sol = solve_ivp(simplefun, [t0, tfinal], y0, t_eval=ts)
+plt.plot(sol.t, sol.y[0], sol.t, np.exp(-1*sol.t))
+# The advantage is that this method of solve_ivp can be used to get multiple solutions for multiple initial conditions also.
+
+
+import matplotlib.pyplot as plt
+import numpy as np
+from scipy.integrate import solve_ivp #for solving initial value problem using scipy
+def lotkavolterra(t, y):
+    a = 0.7
+    c = 0.007
+    b = 1.
+    pr = y[0] # population of rabbits
+    pf = y[1] # population of foxes
+    dprdt = a*pr - c*pr*pf
+    dpfdt = c*pr*pf - b*pf
+    return np.array([dprdt, dpfdt]) # returning an array instead of list
+p0 = [70, 50]      # initial condition
+t0 = 0
+tfinal = 30 
+ts = np.linspace(t0, tfinal, 20*(tfinal-t0))
+sol = solve_ivp(lotkavolterra, [t0, tfinal], p0, t_eval=ts)
+pr = sol.y[0]                
+pf = sol.y[1]                
+plt.plot(sol.t, pr, label='rabbits')
+plt.plot(sol.t, pf, '-o', label='foxes')
+plt.legend()
+plt.xlabel('t')
+
+
+def eulerf(f,tspan,y0,dt):  # a starter version of the Euler Forward algorithm
+# f - the function that defines the derivative or right hand side of the ODE
+# tspan - array with starttime and endtime
+# y0 - initial value of the output variable or y(t=0)
+# dt - time step for the solver
+    n = int(np.diff(tspan)/dt)  # number of intervals, has to be an integer for linspace to work 
+    t = np.linspace(tspan[0],tspan[1],n+1) # time vector
+    y = np.zeros([n+1,len(y0)])   # initialize the output vector
+    y[0,:] = y0           # set the initial value of output
+    for i in range(0,n): 
+        y[i+1,:] = y[i,:] + dt*f(t[i],y[i,:])  # loop over all the time steps i to compute y vector
+    return y, t         # return the solution and time vectors
+tspan = np.array([t0, tfinal]) # array with starttime and endtime
+tstep = 0.1 # timestep
+ye, te = eulerf(lotkavolterra, tspan, p0, tstep)    
+plt.plot(te, ye[:])
+plt.ylabel('population')
+
+
+fig,axs = plt.subplots(nrows=2, ncols=1, figsize=(10,8))
+def eulerf(f,tspan,y0,dt): # defining eulerf function
+    n = int(np.diff(tspan)/dt) 
+    t = np.linspace(tspan[0],tspan[1],n+1) 
+    y = np.zeros([n+1,len(y0)])  # defining subplot array
+    y[0,:] = y0           
+    for i in range(0,n): 
+        y[i+1,:] = y[i,:] + dt*f(t[i],y[i,:])  
+    return y, t         
+tspan = np.array([t0, tfinal]) # Trying timesteps of 0.05, 0.1, 0.2
+ye, te = eulerf(lotkavolterra, tspan, p0, 0.05) 
+axs[0].plot(te,ye[:,0],'y', label=0.05)
+axs[1].plot(te,ye[:,1],'y', label=0.05)
+ye, te = eulerf(lotkavolterra, tspan, p0, 0.1)
+axs[0].plot(te,ye[:,0],'r--', label=0.1)
+axs[1].plot(te,ye[:,1],'r--', label=0.1)
+ye, te = eulerf(lotkavolterra, tspan, p0, 0.2)
+axs[0].plot(te,ye[:,0],'b-', label=0.2)
+axs[1].plot(te,ye[:,1],'b-', label=0.2)
+axs[0].set_title("Rabbits")
+axs[1].set_title("Foxes")
+axs[0].legend()
+axs[1].legend()
+plt.show()
