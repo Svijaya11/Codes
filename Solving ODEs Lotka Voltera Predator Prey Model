@@ -82,3 +82,17 @@ axs[1].set_title("Foxes")
 axs[0].legend()
 axs[1].legend()
 plt.show()
+
+
+fig,axs = plt.subplots(nrows=2, ncols=1, figsize=(8,10))
+ye, te = eulerf(lotkavolterra, tspan, p0, 0.1)
+axs[1].plot(ye[:,0],ye[:,1]) # plotting graphs for simple solution and forward euler method
+axs[1].set_xlabel('Rabbits')
+axs[1].set_ylabel('Foxes')
+axs[1].set_title("Forword Euler Method")
+axs[0].plot( pr, pf)
+axs[0].set_xlabel('Rabbits')
+axs[0].set_ylabel('Foxes')
+axs[0].set_title("Simple Solution")
+axs[1].set_title("Forword Euler Method")
+plt.show()
