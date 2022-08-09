@@ -33,6 +33,7 @@ print(df.head())
 df ['GENDER'] = ['MALE', 'FEMALE', 'MALE', 'FEMALE', 'MALE', 'MALE', 'MALE', 'MALE', 'MALE']
 print (df)
 
+
 # Number of actions in an array
 import pandas as pd
 from google.colab import files
@@ -66,6 +67,7 @@ filter_criteria = (df["GENDER"] == "Male")
 Index (['Time', 'User full name', 'Event context', 'Component', 'Event name', 'Description', 'Origin', 'IP address', 'GENDER'], dtype='object')
 new_data= df[filter_criteria] #records of male students in new_data
 print (new_data)
+
 
 # Pie Chart
 import matplotlib.pyplot as plt
