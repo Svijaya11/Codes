@@ -5,13 +5,11 @@ def functn(x):
   return ans
 functn(m.pi/6)
 
-
 import math as m
 def functn(x,mu,sigma):
   answer = (1/(sigma*m.sqrt(2*m.pi)))*m.exp((-1/2)*((x-mu)/sigma)**2)
   return answer
 functn(1,2,3)
-
 
 # Plot graph of log(x)-1
 import numpy as np
@@ -22,7 +20,6 @@ plt.plot(x,y,"blue")
 plt.title("Title")
 plt.ylabel("Y label")
 plt.xlabel("X label")
-
 
 # Plot graph of log(x)-1 and sqrt(x)
 import numpy as np
