@@ -14,6 +14,7 @@ plt.plot(sol.t, sol.y[0], sol.t, np.exp(-1*sol.t))
 # The advantage is that this method of solve_ivp can be used to get multiple solutions for multiple initial conditions also.
 
 
+
 import matplotlib.pyplot as plt
 import numpy as np
 from scipy.integrate import solve_ivp #for solving initial value problem using scipy
@@ -39,6 +40,7 @@ plt.legend()
 plt.xlabel('t')
 
 
+
 def eulerf(f,tspan,y0,dt):  # a starter version of the Euler Forward algorithm
 # f - the function that defines the derivative or right hand side of the ODE
 # tspan - array with starttime and endtime
@@ -56,7 +58,6 @@ tstep = 0.1 # timestep
 ye, te = eulerf(lotkavolterra, tspan, p0, tstep)    
 plt.plot(te, ye[:])
 plt.ylabel('population')
-
 
 fig,axs = plt.subplots(nrows=2, ncols=1, figsize=(10,8))
 def eulerf(f,tspan,y0,dt): # defining eulerf function
@@ -83,7 +84,6 @@ axs[0].legend()
 axs[1].legend()
 plt.show()
 
-
 fig,axs = plt.subplots(nrows=2, ncols=1, figsize=(8,10))
 ye, te = eulerf(lotkavolterra, tspan, p0, 0.1)
 axs[1].plot(ye[:,0],ye[:,1]) # plotting graphs for simple solution and forward euler method
@@ -96,7 +96,6 @@ axs[0].set_ylabel('Foxes')
 axs[0].set_title("Simple Solution")
 axs[1].set_title("Forword Euler Method")
 plt.show()
-
 
 def RungeKutta2(f,tspan,y0,dt): # defining RungeKutta RK2 function
     n = int(np.diff(tspan)/dt)
@@ -122,7 +121,6 @@ ax.legend()
 plt.xlabel('time')
 plt.ylabel('population')
 
-
 def RungeKutta4(f,tspan,y0,dt): # defining RungeKutta RK2 function
     n = int(np.diff(tspan)/dt)    
     t = np.linspace(tspan[0],tspan[1],n+1)
@@ -138,8 +136,7 @@ def RungeKutta4(f,tspan,y0,dt): # defining RungeKutta RK2 function
     return y, t
     y2, t2 = RungeKutta4(lotkavolterra, tspan, p0, 0.1)
     print(y,t)
-    
-    
+       
 y2, t2 = RungeKutta4(lotkavolterra, tspan, p0, 0.1)
 fig, ax = plt.subplots(figsize=(16,8))
 # plotting graphs for Fox & Rabbit - RK2 vs RK4
@@ -150,7 +147,6 @@ ax.plot(t2, y2[:,0], "r", label="Rabbits by rungekutta4")
 ax.legend()
 plt.xlabel('time')
 plt.ylabel('population')
-
 
 import matplotlib.pyplot as plt
 def harmonic(t,x):
@@ -169,7 +165,6 @@ axes.plot(trk4,xrk4[:,0] ,'r', lw=0.1, marker='+', ),
 axes.set_title('damped linear harmonic oscillator')
 axes.set_xlabel('t')
 axes.set_ylabel('x')
-
 
 fig, axes = plt.subplots(figsize=(16,8))
 xRK4, tRK4 = RungeKutta4(ode_system, tspan, p0, 0.1)
