@@ -18,7 +18,6 @@ for word,count in counts.items():
 # All done
 print(bigword, bigcount)
 
-
 # No. of vowels in a string 
 string = "The quick brown fox jumps over the lazy dog"
 small_letters = string.lower()
@@ -40,7 +39,6 @@ for the_num in [9, 41, 12, 74, 15] :
    print(largest_so_far, the_num)
 print('After', largest_so_far)
 
-
 # Counting in a loop, Summing in a loop, Finding average
 count = 0
 sum = 0
@@ -50,7 +48,6 @@ for value in [9, 41, 12, 3] :
     sum = sum + value
     print(count, sum, value)
 print('After', count, sum, sum / count)
-
 
 # Finding smallest in a loop
 smallest = None
@@ -76,13 +73,11 @@ def Remove(list1):
 list1 = [10,20,30,20,10,50,60,40,80,50,40]
 print(Remove(list1))
 
-
 # Define a function that take a list of words as argument and returns list with the characters reversed.
 # for example, ['abc','tuv'] -----> ['cba','vut'] or like ['abc','tuv'] -----> ['vut','cba',]
 given_list = ['abc','tuv']
 given_list.reverse()
 print(given_list)
-
 
 def intro_rightalign():
   name = input("Enter your name: ")
