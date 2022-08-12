@@ -1,0 +1,33 @@
+import pandas as pd
+import numpy as np
+data = pd.read_csv('/content/drive/MyDrive/Colab Notebooks/User_registered_5_courses.csv') 
+data.head()
+
+data2 = data.drop(['Unnamed: 0','Unnamed: 0.1','age_group','country','state','college','local_chapter','graduation year','profession','department','study_year'], axis = 1)
+data2.head()
+
+data3 = data2.drop(['qualification','designation','motivation', 'exam_taker', 'Course_id_y'], axis = 1)
+data3.head()
+
+DataGrouped = data3.groupby(['user_id', 'noc19-ae01']).sum().reset_index()
+DataGrouped
+
+def create_DataBinary(DataGrouped):
+  DataBinary = DataGrouped.copy()
+  DataBinary['True'] = 1
+  return DataBinary
+
+DataBinary = create_DataBinary(DataGrouped)
+DataBinary.head()
+
+purchase_data[‘SalesItem’] = ‘I’ + 
+purchase_data[‘SalesItem’].astype(str)
+
+from scipy.sparse import coo_matrix, csr_matrix
+from sklearn.metrics.pairwise import cosine_similarity
+from sklearn.preprocessing import LabelEncoder
+
+def GetItemItemSim(user_ids, product_ids):
+SalesItemCustomerMatrix = csr_matrix(([1]*len(user_ids), (product_ids, user_ids)))
+similarity = cosine_similarity(SalesItemCustomerMatrix)
+return similarity, SalesItemCustomerMatrix
