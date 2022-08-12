@@ -12,6 +12,7 @@ data3.head()
 DataGrouped = data3.groupby(['user_id', 'noc19-ae01']).sum().reset_index()
 DataGrouped
 
+
 def create_DataBinary(DataGrouped):
   DataBinary = DataGrouped.copy()
   DataBinary['True'] = 1
@@ -22,6 +23,7 @@ DataBinary.head()
 
 purchase_data[‘SalesItem’] = ‘I’ + 
 purchase_data[‘SalesItem’].astype(str)
+
 
 from scipy.sparse import coo_matrix, csr_matrix
 from sklearn.metrics.pairwise import cosine_similarity
